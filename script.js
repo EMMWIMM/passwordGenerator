@@ -5,7 +5,6 @@ var lower = ["a", "b","c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"
 var special = ["!", "@","#", "$", "%", "&", "*", "=", "+", "-", "_", "?", "/"]
 
 
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
