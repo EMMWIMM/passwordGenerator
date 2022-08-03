@@ -1,5 +1,5 @@
 # passwordGenerator
-a random password generator
+a random password generator https://emmwimm.github.io/passwordGenerator/
 <img width="918" alt="ScreenShot" src="https://user-images.githubusercontent.com/105828266/182512359-c3a1c289-0569-405a-81b1-693188e81f36.png">
 Generates a random password meeting the specifications the users requests via page prompts.
 Effort was taken to ensure:
