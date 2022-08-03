@@ -5,12 +5,7 @@ var lower = ["a", "b","c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"
 var special = ["!", "@","#", "$", "%", "&", "*", "=", "+", "-", "_", "?", "/"]
 
 
-// var randofunc = {
-//   lowerC = getRandoLower;
-//   upperC = getRandoUpper;
-//   numbersC = getRandoNumber;
-//   specialC = getRandoSpecial;
-// }
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -71,7 +66,7 @@ function generatePassword(){
 
   if(numTrues == 0){
     window.alert("You cannot have a password without some kind of characters!");
-    return "You have failed yourself!";
+    return "Could not generate Password without any character types selected :(";
   }
 
   return randoPass;
