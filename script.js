@@ -33,10 +33,66 @@ function generatePassword(){
   var includeSpecial = getYesOrNo("Should I include special characters in your password? ie ! $ # @ , Please indicate yes or no.");
   console.log(includeSpecial + " to special characters");
 
-  
+  var randoPass= "";
+  var sets = [includeLowercase, includeUppercase, includeNumbers, includeSpecial];
+  var numTrues = countTrues(sets);
+  var remainder = (passwordLength % numTrues);
+  if (includeLowercase) {
+    var numberOfLowers=Math.floor(passwordLength/numTrues);
+    randoPass += getRandoLower(numberOfLowers);
+    if(remainder > 0){
+      randoPass += getRandoLower(remainder);
+      remainder = 0;
+    }
+  }
 
-  return "thisIsMyWackyPasswordYo123!@$%"+passwordLength;
+  if (includeUppercase) {
+    randoPass += getRandoUpper(Math.floor(passwordLength/numTrues));
+    if(remainder > 0){
+      randoPass += getRandoUpper(remainder);
+      remainder = 0;
+    }
+  }
+
+  if (includeNumbers) {
+    randoPass += getRandoNumber(Math.floor(passwordLength/numTrues));
+    if(remainder > 0){
+      randoPass += getRandoNumber(remainder);
+      remainder = 0;
+    }
+  }
+
+  if (includeSpecial) {
+    randoPass += getRandoSpecial(Math.floor(passwordLength/numTrues));
+    if(remainder > 0){
+      randoPass += getRandoSpecial(remainder);
+      remainder = 0;
+    }
+  }
+
+  if(numTrues == 0){
+    window.alert("You cannot have a password without some kind of characters!");
+    return "You have failed yourself!";
+  }
+
+  return randoPass;
 }
+// count trues
+
+function countTrues(includes){
+  var trues= 0;
+  for( i=0; i<includes.length; i++){
+      if (includes[i] == true){
+        trues= trues + 1;
+      }
+
+
+
+  }
+
+  return trues;
+}
+
 
 // get password length
 function getPasswordDigits(){
@@ -77,24 +133,44 @@ function getYesOrNo (question){
 
 //randofunc
 
-function getRandoLower (){
-  return lower [math.floor(math.random()*lower.length)]
-  console.log(getRandoLower);
+function getRandoLower (numberOfChars){
+  let returnVal = "";
+  for(i=0; i<numberOfChars; i++){
+    returnVal += lower [Math.floor(Math.random()*lower.length)]
+  }
+  console.log("getRandoLower("+numberOfChars+") returns  "+returnVal);
+  return returnVal;
 }
 
-function getRandoUpper (){
-  return upper [math.floor(math.random()*upper.length)]
-  console.log(getRandoUpper);
+function getRandoUpper (numberOfChars){
+  let returnVal = "";
+  for(i=0; i<numberOfChars; i++){
+    returnVal += upper [Math.floor(Math.random()*upper.length)]
+  }
+  console.log("getRandoUpper("+numberOfChars+") returns  "+returnVal);
+  return returnVal;
+
 }
 
-function getRandoNumber (){
-  return numbers [math.floor(math.random()*numbers.length)]
-  console.log(getRandoNumber);
+function getRandoNumber (numberOfChars){
+  let returnVal = "";
+  for(i=0; i<numberOfChars; i++){
+    returnVal += numbers [Math.floor(Math.random()*numbers.length)]
+  }
+  console.log("getRandoNumber("+numberOfChars+") returns  "+returnVal);
+  return returnVal;
+
 }
 
-function getRandoSpecial (){
-  return special [math.floor(math.random()*special.length)]
-  console.log(getRandoSpecial);
+function getRandoSpecial (numberOfChars){
+
+  let returnVal = "";
+  for(i=0; i<numberOfChars; i++){
+    returnVal += special [Math.floor(Math.random()*special.length)]
+  }
+  console.log("getRandoSpecial("+numberOfChars+") returns  "+returnVal);
+  return returnVal;
+
 }
 
 
