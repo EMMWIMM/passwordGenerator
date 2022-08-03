@@ -3,7 +3,6 @@ var generateBtn = document.querySelector("#generate");
 var upper = ["A", "B","C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var lower = ["a", "b","c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var special = ["!", "@","#", "$", "%", "&", "*", "=", "+", "-", "_", "?", "/"]
-var numbers = ["0", "1", "2","3", "4", "5", "6", "7", "8", "9"]
 
 
 // var randofunc = {
@@ -39,17 +38,17 @@ function generatePassword(){
   var remainder = (passwordLength % numTrues);
   if (includeLowercase) {
     var numberOfLowers=Math.floor(passwordLength/numTrues);
-    randoPass += getRandoLower(numberOfLowers);
+    randoPass += getRandoSomething(numberOfLowers, lower);
     if(remainder > 0){
-      randoPass += getRandoLower(remainder);
+      randoPass += getRandosomething(numberOfLowers, lower);
       remainder = 0;
     }
   }
 
   if (includeUppercase) {
-    randoPass += getRandoUpper(Math.floor(passwordLength/numTrues));
+    randoPass += getRandoSomething(Math.floor(passwordLength/numTrues), upper);
     if(remainder > 0){
-      randoPass += getRandoUpper(remainder);
+      randoPass += getRandoSomething(remainder, upper);
       remainder = 0;
     }
   }
@@ -63,9 +62,9 @@ function generatePassword(){
   }
 
   if (includeSpecial) {
-    randoPass += getRandoSpecial(Math.floor(passwordLength/numTrues));
+    randoPass += getRandoSomething(Math.floor(passwordLength/numTrues), special);
     if(remainder > 0){
-      randoPass += getRandoSpecial(remainder);
+      randoPass += getRandoSomething(remainder, special);
       remainder = 0;
     }
   }
@@ -85,11 +84,7 @@ function countTrues(includes){
       if (includes[i] == true){
         trues= trues + 1;
       }
-
-
-
   }
-
   return trues;
 }
 
@@ -132,46 +127,25 @@ function getYesOrNo (question){
 // get array based on yes/no statements
 
 //randofunc
-
-function getRandoLower (numberOfChars){
+function getRandoSomething(numberOfChars, oneSet){
   let returnVal = "";
   for(i=0; i<numberOfChars; i++){
-    returnVal += lower [Math.floor(Math.random()*lower.length)]
+    returnVal += oneSet [Math.floor(Math.random()*oneSet.length)]
   }
-  console.log("getRandoLower("+numberOfChars+") returns  "+returnVal);
   return returnVal;
 }
 
-function getRandoUpper (numberOfChars){
-  let returnVal = "";
-  for(i=0; i<numberOfChars; i++){
-    returnVal += upper [Math.floor(Math.random()*upper.length)]
-  }
-  console.log("getRandoUpper("+numberOfChars+") returns  "+returnVal);
-  return returnVal;
-
-}
 
 function getRandoNumber (numberOfChars){
   let returnVal = "";
   for(i=0; i<numberOfChars; i++){
-    returnVal += numbers [Math.floor(Math.random()*numbers.length)]
+    returnVal += Math.floor(Math.random()*10)
   }
   console.log("getRandoNumber("+numberOfChars+") returns  "+returnVal);
   return returnVal;
 
 }
 
-function getRandoSpecial (numberOfChars){
-
-  let returnVal = "";
-  for(i=0; i<numberOfChars; i++){
-    returnVal += special [Math.floor(Math.random()*special.length)]
-  }
-  console.log("getRandoSpecial("+numberOfChars+") returns  "+returnVal);
-  return returnVal;
-
-}
 
 
 // Add event listener to generate button
